@@ -1,6 +1,6 @@
 class Polynom
     def initialize coefs
-        @coefs = coefs.map { |x| Float(x) }.reverse
+        @coefs = coefs.reverse
         @degree = coefs.length - 1
     end
     def calculate x
