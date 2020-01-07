@@ -36,7 +36,7 @@ when 1
         puts("x = #{x.round(argp.p)}")
     end
 when 2
-    pol.newton(s: 0.0, p: argp.p) do |x|
+    pol.newton(s: 0.5, p: argp.p) do |x|
         puts("x = #{x.round(argp.p)}")
     end
 end
