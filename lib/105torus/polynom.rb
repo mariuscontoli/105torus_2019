@@ -20,11 +20,24 @@ class Polynom
     def newton (s: 0.5, p: 6, &block)
         case @degree
         when 4
+            yield(s)
             200.times do |i|
                 xplus = s - (calculate(s) / calculate_der(s))
                 return if ((xplus - s).abs / xplus.abs < 0.1**p)
-                yield(s)
                 s = xplus
+                yield(s)
+            end
+        end
+    end
+    def secant (s: 0.0, e: 1.0, p: 6, &block)
+        case @degree
+        when 4
+            yield(s)
+            200.times do |i|
+                xplus = s - (calculate(s - e) / (calculate(s) - calculate(e)))
+                return if ((xplus - s).abs / xplus.abs < 0.1**p)
+                s = xplus
+                yield(s)
             end
         end
     end
