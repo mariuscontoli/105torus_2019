@@ -35,4 +35,8 @@ when 1
     pol.bisection(s: 0.0, e: 1.0, p: argp.p) do |x|
         puts("x = #{x.round(argp.p)}")
     end
+when 2
+    pol.newton(s: 0.0, p: argp.p) do |x|
+        puts("x = #{x.round(argp.p)}")
+    end
 end
