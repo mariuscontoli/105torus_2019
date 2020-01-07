@@ -3,6 +3,7 @@ class Polynom
         @coefs = coefs.reverse
         @degree = coefs.length - 1
     end
+
     def calculate x
         i = @degree + 1
         @coefs.reduce(0) { |r, v|
@@ -10,25 +11,28 @@ class Polynom
             r + (v*(x**i))
         }
     end
-    def calculate_der x
+
+    def calculate_derivative x
         i = @degree + 1
         @coefs.reduce(0) { |r, v|
             i -= 1
             r + i*(v*(x**(i-1)))
         }
     end
+
     def newton (s: 0.5, p: 6, &block)
         case @degree
         when 4
             yield(s)
             200.times do |i|
-                xplus = s - (calculate(s) / calculate_der(s))
+                xplus = s - (calculate(s) / calculate_derivative(s))
                 return if ((xplus - s).abs / xplus.abs < 0.1**p)
                 s = xplus
                 yield(s)
             end
         end
     end
+
     def secant (s: 0.0, e: 1.0, p: 6, &block)
         case @degree
         when 4
@@ -41,6 +45,7 @@ class Polynom
             end
         end
     end
+
     def bisection(s: 0.0, e: 1.0, p: 6, &block)
         case @degree
         when 4
@@ -53,4 +58,5 @@ class Polynom
             end
         end
     end
+
 end
