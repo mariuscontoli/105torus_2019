@@ -32,7 +32,7 @@ pol = Polynom.new [argp.a0, argp.a1, argp.a2, argp.a3, argp.a4]
 
 case argp.opt
 when 1
-    pol.bissection(s: 0.0, e: 1.0, p: argp.p) do |x|
+    pol.bisection(s: 0.0, e: 1.0, p: argp.p) do |x|
         puts("x = #{x.round(argp.p)}")
     end
 end
