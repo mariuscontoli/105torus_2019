@@ -32,12 +32,12 @@ class Polynom
     def secant (s: 0.0, e: 1.0, p: 6, &block)
         case @degree
         when 4
-            yield(s)
-            200.times do |i|
-                xplus = s - (calculate(s - e) / (calculate(s) - calculate(e)))
+            200.times do
+                xplus = s - (calculate(s) * (s - e) / (calculate(s) - calculate(e)))
                 return if ((xplus - s).abs / xplus.abs < 0.1**p)
-                s = xplus
-                yield(s)
+                s = e
+                e = xplus
+                yield(e)
             end
         end
     end
