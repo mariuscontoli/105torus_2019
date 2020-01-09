@@ -22,7 +22,11 @@ argp.add_arg(:opt) do |x|
     Integer x
 end
 argp.add_list(:a, 5) { |x| Integer x }
-argp.add_arg(:p) { |x| Integer x }
+argp.add_arg(:p) { |x|
+    r = Integer(x)
+    #exit(84) unless (1..40).include? r
+    r
+}
 
 argp.parse_args!
 
