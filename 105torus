@@ -3,6 +3,10 @@
 require_relative 'lib/105torus'
 include Torus105
 
+if ARGV.length != 7
+    exit 84
+end
+
 argp = Argparse.new
 argp.usage = <<EOF
 USAGE
