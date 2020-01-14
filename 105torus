@@ -45,7 +45,7 @@ afficher = Proc.new { |x|
     if x == xprim
         puts "x = #{xprim}"
     else
-        puts "x = %.#{argp.p}f" % [x]
+        puts "x = %.#{argp.p}f" % [xprim]
     end
 }
 
