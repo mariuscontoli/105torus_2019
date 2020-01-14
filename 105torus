@@ -40,33 +40,31 @@ argp.parse_args!
 
 pol = Polynom.new [argp.a0, argp.a1, argp.a2, argp.a3, argp.a4]
 
-case argp.opt
-when 1
-    last = 0
-    pol.bisection(s: 0.0, e: 1.0, p: argp.p) do |x|
-        xprim = x.round(argp.p)
-        if x == xprim
-            puts "x = #{xprim}"
-        else
-            puts "x = %.#{argp.p}f" % [x]
+afficher = Proc.new { |x|
+    xprim = x.round(argp.p)
+    if x == xprim
+        puts "x = #{xprim}"
+    else
+        puts "x = %.#{argp.p}f" % [x]
+    end
+}
+
+begin
+    case argp.opt
+    when 1
+        last = 0
+        pol.bisection(s: 0.0, e: 1.0, p: argp.p) do |x|
+            afficher.call x
+        end
+    when 2
+        pol.newton(s: 0.5, p: argp.p) do |x|
+            afficher.call x
+        end
+    when 3
+        pol.secant(s: 0.0, e: 1.0, p: argp.p) do |x|
+            afficher.call x
         end
     end
-when 2
-    pol.newton(s: 0.5, p: argp.p) do |x|
-        xprim = x.round(argp.p)
-        if x == xprim
-            puts "x = #{xprim}"
-        else
-            puts "x = %.#{argp.p}f" % [x]
-        end
-    end
-when 3
-    pol.secant(s: 0.0, e: 1.0, p: argp.p) do |x|
-        xprim = x.round(argp.p)
-        if x == xprim
-            puts "x = #{xprim}"
-        else
-            puts "x = %.#{argp.p}f" % [x]
-        end
-    end
+rescue ZeroDivisionError
+    exit 84
 end
