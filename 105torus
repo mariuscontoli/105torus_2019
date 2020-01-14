@@ -23,7 +23,9 @@ DESCRIPTION
 EOF
 
 argp.add_arg(:opt) do |x|
-    Integer x
+    r = Integer x
+    exit(84) unless (1..3).include? r
+    r
 end
 argp.add_list(:a, 5) { |x| Integer x }
 argp.add_arg(:p) { |x|
