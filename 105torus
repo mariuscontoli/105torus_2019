@@ -30,7 +30,7 @@ end
 argp.add_list(:a, 5) { |x| Integer x }
 argp.add_arg(:p) { |x|
     r = Integer(x)
-    #exit(84) unless (1..40).include? r
+    exit(84) unless (0..40).include? r
     r
 }
 
