@@ -44,7 +44,7 @@ case argp.opt
 when 1
     last = 0
     pol.bisection(s: 0.0, e: 1.0, p: argp.p) do |x|
-        xprim = x.truncate(argp.p + 1).round(argp.p)
+        xprim = x.round(argp.p)
         if x == xprim
             puts "x = #{xprim}"
         else
@@ -53,7 +53,7 @@ when 1
     end
 when 2
     pol.newton(s: 0.5, p: argp.p) do |x|
-        xprim = x.truncate(argp.p + 1).round(argp.p)
+        xprim = x.round(argp.p)
         if x == xprim
             puts "x = #{xprim}"
         else
@@ -62,7 +62,7 @@ when 2
     end
 when 3
     pol.secant(s: 0.0, e: 1.0, p: argp.p) do |x|
-        xprim = x.truncate(argp.p + 1).round(argp.p)
+        xprim = x.round(argp.p)
         if x == xprim
             puts "x = #{xprim}"
         else
