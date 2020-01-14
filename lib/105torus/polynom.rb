@@ -51,7 +51,7 @@ class Polynom
         when 4
             if (calculate(e) * calculate(s) <= 0)
                 mid = (s + e)/2.0
-                return if ((s - e).abs / (2 * mid.abs)) < 0.1**p
+                return if ((s - e).abs / (2.0 * mid.abs)) < 0.1**p
                 yield(mid)
                 bisection(s: s, e: mid, p: p, &block)
                 bisection(s: mid, e: e, p: p, &block)
